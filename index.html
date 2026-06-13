@@ -19,8 +19,25 @@
 
         header {
             text-align: center;
-            padding: 50px 20px 25px 20px;
+            padding: 40px 20px 25px 20px;
             background: linear-gradient(180deg, #172330 0%, var(--bg-color) 100%);
+        }
+
+        /* 🎯 Logo එක සඳහා වන ස්ටයිල්ස් */
+        .logo-container {
+            margin-bottom: 15px;
+        }
+        
+        .game-logo {
+            width: 100%;
+            max-width: 180px; /* ලෝගෝ එකේ ප්‍රමාණය මෙතනින් වෙනස් කරන්න පුළුවන් */
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4)); /* Neon Glow Effect එක */
+            transition: transform 0.3s ease;
+        }
+
+        .game-logo:hover {
+            transform: scale(1.05); /* මවුස් එක උඩට ගෙනිච්චම ලෝගෝ එක පොඩ්ඩක් ලොකු වෙනවා */
         }
 
         .main-title {
@@ -158,6 +175,10 @@
 <body>
 
     <header>
+        <div class="logo-container">
+            <img src="https://i.postimg.co.cc/Vv8t053X/df-logo.png" alt="Delta Force Logo" class="game-logo">
+        </div>
+        
         <div class="main-title">DELTA FORCE LOADOUT</div>
         <div class="sub-title">ඔයාට කැමති Weapon Loadout එකක් මෙතනින් ලේසියෙන් Copy කරගන්න</div>
     </header>
@@ -174,8 +195,7 @@
     </div>
 
     <div class="container" id="weapons-container">
-        <!-- JavaScript මඟින් තුවක්කු ලිස්ට් එක මෙතනට generate වේ -->
-    </div>
+        </div>
 
     <div class="social-links">
         <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
@@ -187,8 +207,6 @@
     </footer>
 
     <script>
-        // 🔴 වෙපන් ඩේටාබේස් එක:
-        // 'name' එක වෙබ්සයිට් එකේ පේන නමයි. 'code' එක බටන් එක එබුවම COPY වෙන රහස් කෝඩ් එකයි.
         const weaponDatabase = [
             // ASSAULT RIFLES (ar)
             { category: "ar", title: "AR-57", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
@@ -274,7 +292,6 @@
             weaponDatabase.forEach((weapon) => {
                 let buildsHtml = '';
                 weapon.builds.forEach((build) => {
-                    // මෙතනදී කෙලින්ම build.code එක තමයි copyCode එක ඇතුළට පාස් වෙන්නේ
                     buildsHtml += `
                         <div class="loadout-item">
                             <span class="loadout-name">${build.name}</span>
