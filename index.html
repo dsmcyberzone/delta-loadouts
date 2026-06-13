@@ -6,19 +6,17 @@
     <title>Delta Force Loadouts</title>
     <style>
         :root {
-            /* නවීන Gaming කලර්ස් (Deep Blue, Neon Cyan සහ Gold) */
             --bg-color: #0d131a; 
             --card-bg: #141d26;
             --text-color: #ffffff;
-            --accent-color: #00f0ff; /* Neon Cyan */
-            --gold-color: #ffd700;   /* Gold */
+            --accent-color: #00f0ff; 
+            --gold-color: #ffd700;   
             --border-color: #1e2b38;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 50px; }
 
-        /* Header Styles */
         header {
             text-align: center;
             padding: 60px 20px 30px 20px;
@@ -26,7 +24,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* Delta Force Loadout Title */
         .main-title {
             font-size: 3.5rem;
             font-weight: 900;
@@ -37,7 +34,6 @@
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
 
-        /* Sub Title */
         .sub-title {
             font-size: 1.4rem;
             font-weight: normal;
@@ -48,7 +44,6 @@
             line-height: 1.4;
         }
 
-        /* Container & Cards */
         .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
 
         .weapon-group {
@@ -66,7 +61,6 @@
             box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
         }
 
-        /* Weapon Header (Clickable) */
         .weapon-header {
             padding: 20px;
             cursor: pointer;
@@ -83,7 +77,6 @@
         .arrow { transition: transform 0.3s; font-size: 1.2rem; color: var(--accent-color); }
         .weapon-header.active .arrow { transform: rotate(180deg); }
 
-        /* Loadout List */
         .loadout-list { display: none; padding: 10px 20px; background-color: #0b1016; }
 
         .loadout-item {
@@ -98,7 +91,6 @@
         .loadout-item:last-child { border-bottom: none; }
         .loadout-name { color: #cbd5e1; font-size: 1.1rem; font-weight: 500; }
 
-        /* Copy Button */
         .copy-btn {
             background-color: var(--accent-color);
             color: #0d131a;
@@ -115,7 +107,6 @@
         .copy-btn:hover { background-color: #33f3ff; transform: scale(1.03); }
         .copy-btn.copied { background-color: #22c55e; color: #ffffff; }
 
-        /* Social Action Buttons */
         .social-links { text-align: center; margin-top: 40px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
         
         .btn-social {
@@ -148,68 +139,16 @@
 
     <div class="container">
 
-        <div class="weapon-group">
-            <div class="weapon-header" onclick="toggleWeapon(this)">
-                <div class="weapon-title">AUG</div>
-                <div class="arrow">▼</div>
-            </div>
-            <div class="loadout-list">
-                <div class="loadout-item">
-                    <span class="loadout-name">AUG 300K LOADOUT</span>
-                    <button class="copy-btn" onclick="copyCode('AUG Assault Rifle-Operations-6KBE984099PEUU4LF7EHP', this)">Copy Code</button>
-                </div>
-                <div class="loadout-item">
-                    <span class="loadout-name">AUG 375K LOADOUT</span>
-                    <button class="copy-btn" onclick="copyCode('AUG Assault Rifle-Operations-6KBE9HC099PEUU4LF7EHP', this)">Copy Code</button>
-                </div>
-            </div>
-        </div>
+        <script>
+            // වෙපන්ස් 50 ලේසියෙන් Generate කරගන්න Array එකක් පාවිච්චි කරමු
+            const weaponsCount = 50;
+            const container = document.currentScript.parentElement;
 
-        <div class="weapon-group">
-            <div class="weapon-header" onclick="toggleWeapon(this)">
-                <div class="weapon-title">M4A1</div>
-                <div class="arrow">▼</div>
-            </div>
-            <div class="loadout-list">
-                <div class="loadout-item">
-                    <span class="loadout-name">M4A1 Laser Build</span>
-                    <button class="copy-btn" onclick="copyCode('M4A1-CODE-1', this)">Copy Code</button>
-                </div>
-            </div>
-        </div>
+            // දැනට Sample එකක් විදියට තුවක්කු නම් කිහිපයක් දාන්නම්, පස්සේ ඔයාට ඕන විදියට වෙනස් කරගන්න
+            const weaponNames = {
+                1: "AK-12", 2: "M4A1", 3: "AS VAL", 4: "SCAR-H", 5: "M16A4",
+                6: "AWM", 7: "M24", 8: "MP5", 9: "P90", 10: "UZI"
+            };
 
-        <div class="social-links">
-            <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
-            <a href="https://discord.gg/24nARTqpwP" target="_blank" class="btn-social btn-discord">Join Our Discord Server</a>
-        </div>
-
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Developed for Delta Force Community.</p>
-    </footer>
-
-    <script>
-        function toggleWeapon(header) {
-            header.classList.toggle('active');
-            const list = header.nextElementSibling;
-            if (list.style.display === "block") {
-                list.style.display = "none";
-            } else {
-                list.style.display = "block";
-            }
-        }
-
-        function copyCode(code, button) {
-            navigator.clipboard.writeText(code).then(() => {
-                button.innerText = "Copied!";
-                button.classList.add('copied');
-                setTimeout(() => {
-                    button.innerText = "Copy Code";
-                    button.classList.remove('copied');
-                }, 2000);
-            });
-        }
-    </script>
-</body>
-</html>
+            for(let i = 1; i <= weaponsCount; i++) {
+                //
