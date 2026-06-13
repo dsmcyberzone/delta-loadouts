@@ -1,163 +1,95 @@
-<!doctype html>
-<html lang="si">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anura Construction & Suppliers</title>
-  <meta name="description" content="Anura Construction & Suppliers - ඔබගේ සිහින නිවහනට අවශ්‍ය හොඳම අමුද්‍රව්‍ය අපෙන් ගන්න." />
-  <style>
-    /* Simple modern responsive CSS - single file */
-    :root{--accent:#1f7a4c; --dark:#0b1220; --muted:#6b7280}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0;color:#111;background:#f7f9fb}
-    header{background:linear-gradient(90deg, #ffffff 0%, #f0faf3 100%);border-bottom:1px solid #e6eef0}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:56px;height:56px;background:var(--accent);border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-    nav{margin-left:auto}
-    nav a{margin-left:18px;text-decoration:none;color:var(--dark);font-weight:600}
-    .hero{display:flex;gap:32px;align-items:center;padding:40px 0}
-    .hero-left{flex:1}
-    .tag{display:inline-block;padding:8px 12px;border-radius:999px;background:#e9f6ef;color:var(--accent);font-weight:700;margin-bottom:12px}
-    h1{font-size:34px;margin:0 0 12px}
-    p.lead{color:var(--muted);line-height:1.6;margin:0 0 18px}
-    .cta{display:flex;gap:12px}
-    .btn{padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}
-    .btn-primary{background:var(--accent);color:white}
-    .btn-outline{border:2px solid var(--accent);color:var(--accent);background:transparent}
-    .hero-right{flex:1;display:flex;justify-content:center}
-    .card{background:white;border-radius:12px;padding:18px;box-shadow:0 8px 24px rgba(15,23,42,0.06);width:100%}
-    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
-    .service{background:white;border-radius:10px;padding:16px;border:1px solid #eef4f3}
-    .service h4{margin:6px 0}
-    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:28px 0}
-    .product{background:white;border-radius:10px;padding:14px;border:1px solid #eef4f3}
-    footer{padding:24px 0;color:#5b6570}
-    form{display:grid;gap:10px}
-    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #dbe7e3}
-    @media(max-width:800px){.hero{flex-direction:column}.nav-mobile{display:block}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Force - My Weapon Loadouts</title>
+    <style>
+        :root {
+            --bg-color: #0b0f12;
+            --card-bg: #141a1f;
+            --text-color: #e2e8f0;
+            --accent-color: #ffd700;
+            --accent-hover: #ccac00;
+            --secondary-text: #94a3b8;
+            --border-color: #242f38;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 20px; }
+        header { text-align: center; padding: 40px 20px; background: linear-gradient(180deg, #172026 0%, var(--bg-color) 100%); border-bottom: 2px solid var(--accent-color); margin-bottom: 40px; border-radius: 8px; }
+        header h1 { font-size: 2.5rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 10px; }
+        .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .loadout-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; }
+        .loadout-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .card-body { padding: 20px; }
+        .weapon-name { font-size: 1.4rem; font-weight: bold; color: #ffffff; text-transform: uppercase; }
+        .weapon-class { display: inline-block; font-size: 0.8rem; background-color: #232e38; color: var(--accent-color); padding: 3px 8px; border-radius: 4px; margin-bottom: 15px; }
+        .attachments-list { list-style: none; margin-bottom: 20px; }
+        .attachments-list li { font-size: 0.95rem; padding: 6px 0; border-bottom: 1px solid #1c252d; display: flex; justify-content: space-between; }
+        .attachments-list li span { color: var(--secondary-text); }
+        .code-box { background-color: #0b0f12; border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; }
+        .loadout-code { font-family: monospace; font-size: 0.9rem; color: var(--secondary-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .copy-btn { background-color: var(--accent-color); color: #000000; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .copy-btn.copied { background-color: #22c55e; color: #ffffff; }
+        footer { text-align: center; margin-top: 60px; color: var(--secondary-text); padding: 20px; }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container" style="display:flex;align-items:center">
-      <div class="brand">
-        <div class="logo">AC</div>
-        <div>
-          <div style="font-weight:800">Anura Construction & Suppliers</div>
-          <div style="font-size:13px;color:var(--muted)">ඔබගේ සිහින නිවහනට අවශ්‍ය හොඳම අමුද්‍රව්‍ය අපෙන් ගන්න.</div>
+    <header>
+        <h1>Delta Force Loadouts</h1>
+        <p>ඔයාට කැමති Gun එකේ Loadout Code එක ලේසියෙන්ම Copy කරගන්න.</p>
+    </header>
+    <div class="container">
+        <!-- Weapon 1 -->
+        <div class="loadout-card">
+            <div class="card-body">
+                <div class="weapon-name">AS VAL</div>
+                <div class="weapon-class">Assault Rifle</div>
+                <ul class="attachments-list">
+                    <li>Muzzle: <span>Integral Suppressor</span></li>
+                    <li>Optic: <span>Red Dot Sight</span></li>
+                    <li>Stock: <span>Tactical Stock</span></li>
+                    <li>Magazine: <span>30 Round Mag</span></li>
+                </ul>
+                <div class="code-box">
+                    <span class="loadout-code">ASVAL-DF-9921X-META</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+            </div>
         </div>
-      </div>
-      <nav>
-        <a href="#services">සේවාවන්</a>
-        <a href="#products">නිෂ්පාදන</a>
-        <a href="#contact">අමතන්න</a>
-      </nav>
+        <!-- Weapon 2 -->
+        <div class="loadout-card">
+            <div class="card-body">
+                <div class="weapon-name">M4A1</div>
+                <div class="weapon-class">Assault Rifle</div>
+                <ul class="attachments-list">
+                    <li>Muzzle: <span>Tactical Compensator</span></li>
+                    <li>Barrel: <span>Long Barrel</span></li>
+                    <li>Optic: <span>Holo Sight</span></li>
+                    <li>Magazine: <span>45 Round Extended</span></li>
+                </ul>
+                <div class="code-box">
+                    <span class="loadout-code">M4A1-DF-5542M-STABLE</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div class="hero-left">
-        <span class="tag">නිර්මාණ │ ගුණාත්මක</span>
-        <h1>ඔබගේ සිහින නිවහන ඉදිකිරීමේ විශ්වාසදායක සම්බන්ධකාරී</h1>
-        <p class="lead">අපෙන් ගන්න ඉහළ තත්ත්වයේ ගල්, වාස්තු කාර්මික අමුද්‍රව්‍ය, සෞඛ්‍යදායක මදිලිය සහ ඉදිකිරීම් වස්තු. ප්‍රජාවට සහභාගී අරමුදල් ගනුදෙනු සහ සැලසුම් උපදේශන සේවාවන්.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#contact">දැනගන්න</a>
-          <a class="btn btn-outline" href="#products">නිෂ්පාදන බලන්න</a>
-        </div>
-
-        <div class="services">
-          <div class="service">
-            <strong>ඉදිකිරීම් ද්‍රව්‍ය</strong>
-            <p style="margin:6px 0;color:var(--muted);font-size:14px">සිබිල, සීමෙන්තු, වොඩ්, වානේ.</p>
-          </div>
-          <div class="service">
-            <strong>සැපයීම් & ද්‍රව්‍ය</strong>
-            <p style="margin:6px 0;color:var(--muted);font-size:14px">බිම් පොද, ලියාපදිංචි ව්‍යාපාර සඳහා වොලියුම් සැපයීම්.</p>
-          </div>
-          <div class="service">
-            <strong>ප්‍රවාහන සහ බෙදාහැරීම</strong>
-            <p style="margin:6px 0;color:var(--muted);font-size:14px">දුරින්වූ ප්‍රදේශ වලට දුරුගත බෙදාහැරීම්.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="card" style="max-width:420px">
-          <h3 style="margin-top:0">අප සමඟ වැඩ කරමු</h3>
-          <p style="color:var(--muted);margin-bottom:12px">ඇණවුමක් දීම, මිල තක්සේරු කිරීම හෝ තොරතුරු සඳහා පහතින් පෝරමය පුරවන්න.</p>
-          <form id="contact-form" action="mailto:contact@anuraconstruction.example" method="post" enctype="text/plain">
-            <input type="text" name="name" placeholder="ඔබගේ නම*" required />
-            <input type="tel" name="phone" placeholder="දුරකථන අංකය*" required />
-            <input type="email" name="email" placeholder="ඊමේල්" />
-            <select name="service">
-              <option value="materials">සාමාන්‍ය ද්‍රව්‍ය</option>
-              <option value="bulk">බහුවිෂය ඇනවුම්</option>
-              <option value="advice">සැලසුම් උපදේශන</option>
-            </select>
-            <textarea name="message" rows="4" placeholder="ඔබේ පණිවිඩය"></textarea>
-            <button class="btn btn-primary" type="submit">පසුකරන්න</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="products">
-      <h2>ජනප්‍රිය නිෂ්පාදන</h2>
-      <div class="products">
-        <div class="product">
-          <strong>සීමෙන්තු (50kg)</strong>
-          <p style="margin:6px 0;color:var(--muted)">ඉහළ තත්ත්වයේ පිරිසිදු සීමෙන්තු.</p>
-          <div style="margin-top:8px;font-weight:700">රු. 1,200 / BAG (ආගමනය අනුව වෙනස්)
-          </div>
-        </div>
-        <div class="product">
-          <strong>වෙල්ටිබ්ලොක්</strong>
-          <p style="margin:6px 0;color:var(--muted)">නිවාස අලුත්වැඩියා සඳහා සුදුසු බ්ලොක්.</p>
-          <div style="margin-top:8px;font-weight:700">රු. 150 / piece</div>
-        </div>
-        <div class="product">
-          <strong>වානේ රේඛා</strong>
-          <p style="margin:6px 0;color:var(--muted)">ඉදිකිරීම් වානේ (කාර්මික තත්ත්)</p>
-          <div style="margin-top:8px;font-weight:700">මිල අනුග්‍රහය අනුව</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" style="margin-top:28px">
-      <h2>අමතන්න</h2>
-      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
-        <div style="background:white;padding:18px;border-radius:10px;border:1px solid #eef4f3">
-          <p style="margin:0 0 8px;color:var(--muted)">ලිපිනය: කොළඹ, ශ්‍රී ලංකාව (ඉදිකිරීමේ ලිපිනය)</p>
-          <p style="margin:0 0 8px;color:var(--muted)">දුරකථන: +94 77 123 4567</p>
-          <p style="margin:0 0 8px;color:var(--muted)">ඊමේල්: contact@anuraconstruction.example</p>
-          <p style="margin-top:12px;color:var(--muted)">වෙබ්: සමාගම ගැන, නිෂ්පාදන ලැයිස්තුව සහ මිලදී ගැනීම් විස්තර සඳහා අපව අමතන්න.</p>
-        </div>
-
-        <div style="background:#ffffff;padding:18px;border-radius:10px;border:1px solid #eef4f3">
-          <h4 style="margin-top:0">කාර්ය මණ්ඩල කාල සටහන</h4>
-          <p style="margin:6px 0;color:var(--muted)">සඳුදා - සෙනසුරාදා: 8:00am - 6:00pm</p>
-          <p style="margin:6px 0;color:var(--muted)">ඉරිදා: වසා ඇත</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
-      <div>© <strong>Anura Construction & Suppliers</strong> 2025. සියළු හිමිකම් ඇවිරිණි.</div>
-      <div style="color:var(--muted)">Design • Simple Responsive Template</div>
-    </div>
-  </footer>
-
-  <!-- Small script to improve contact form behavior (client-side) -->
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e){
-      // Many browsers won't actually send mailto forms; this is a friendly fallback.
-      alert('Contact form will open your email app (or you can copy the contact details shown on the site).');
-    });
-  </script>
+    <footer>
+        <p>&copy; Delta Force Loadout Share.</p>
+    </footer>
+    <script>
+        function copyCode(button) {
+            const codeText = button.parentElement.querySelector('.loadout-code').innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                button.innerText = "Copied!";
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.innerText = "Copy Code";
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
