@@ -19,13 +19,12 @@
 
         header {
             text-align: center;
-            padding: 60px 20px 30px 20px;
+            padding: 50px 20px 25px 20px;
             background: linear-gradient(180deg, #172330 0%, var(--bg-color) 100%);
-            border-bottom: 1px solid var(--border-color);
         }
 
         .main-title {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -35,7 +34,7 @@
         }
 
         .sub-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: normal;
             color: #94a3b8;
             max-width: 800px;
@@ -44,7 +43,37 @@
             line-height: 1.4;
         }
 
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        /* Category Filter Menu */
+        .category-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .tab-btn {
+            background-color: #1a2632;
+            color: #cbd5e1;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--accent-color);
+            color: #0d131a;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; }
 
         .weapon-group {
             background-color: var(--card-bg);
@@ -58,53 +87,51 @@
 
         .weapon-group:hover {
             border-color: var(--accent-color);
-            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
         }
 
         .weapon-header {
-            padding: 20px;
+            padding: 18px 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s;
         }
 
         .weapon-header:hover { background-color: #1a2632; }
         .weapon-header.active { border-bottom: 1px solid var(--border-color); background-color: #1a2632; }
 
-        .weapon-title { font-size: 1.6rem; font-weight: bold; color: var(--gold-color); letter-spacing: 1px; }
+        .weapon-title { font-size: 1.5rem; font-weight: bold; color: var(--gold-color); letter-spacing: 1px; }
         .arrow { transition: transform 0.3s; font-size: 1.2rem; color: var(--accent-color); }
         .weapon-header.active .arrow { transform: rotate(180deg); }
 
-        .loadout-list { display: none; padding: 10px 20px; background-color: #0b1016; }
+        .loadout-list { display: none; padding: 5px 20px; background-color: #0b1016; }
 
         .loadout-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 14px 0;
             border-bottom: 1px solid #141d26;
             gap: 15px;
         }
 
         .loadout-item:last-child { border-bottom: none; }
-        .loadout-name { color: #cbd5e1; font-size: 1.1rem; font-weight: bold; }
+        .loadout-name { color: #cbd5e1; font-size: 1.05rem; font-weight: bold; }
 
         .copy-btn {
             background-color: var(--accent-color);
             color: #0d131a;
             border: none;
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9rem;
-            min-width: 110px;
+            font-size: 0.85rem;
+            min-width: 105px;
             transition: 0.2s;
         }
 
-        .copy-btn:hover { background-color: #33f3ff; transform: scale(1.03); }
+        .copy-btn:hover { background-color: #33f3ff; }
         .copy-btn.copied { background-color: #22c55e; color: #ffffff; }
 
         .social-links { text-align: center; margin-top: 40px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
@@ -137,44 +164,127 @@
         <div class="sub-title">ඔයාට කැමති Weapon Loadout එකක් මෙතනින් ලේසියෙන් Copy කරගන්න</div>
     </header>
 
+    <div class="category-menu">
+        <button class="tab-btn active" onclick="filterCategory('all', this)">All Weapons</button>
+        <button class="tab-btn" onclick="filterCategory('ar', this)">🔫 ASSAULT RIFLES</button>
+        <button class="tab-btn" onclick="filterCategory('smg', this)">⚡ SMGs</button>
+        <button class="tab-btn" onclick="filterCategory('dmr', this)">🎯 MARKSMAN</button>
+        <button class="tab-btn" onclick="filterCategory('sniper', this)">🎯 SNIPERS</button>
+        <button class="tab-btn" onclick="filterCategory('shotgun', this)">💥 SHOTGUNS</button>
+        <button class="tab-btn" onclick="filterCategory('lmg', this)">🔥 LMGs</button>
+        <button class="tab-btn" onclick="filterCategory('pistol', this)">🔫 PISTOLS</button>
+    </div>
+
     <div class="container" id="weapons-container">
+        </div>
 
-        <!-- 🔴 මෙන්න මෙතන තමයි ඔයාගේ වෙපන්ස් ලිස්ට් එක තියෙන්නේ 👇 -->
-        <script>
-            const loadoutData = [
-                {
-                    title: "AUG LOADOUT",
-                    builds: [
-                        { name: "300K", code: "AUG Assault Rifle-Operations-6KBE984099PEUU4LF7EHP" },
-                        { name: "375K", code: "AUG Assault Rifle-Operations-6KBE9HC099PEUU4LF7EHP" },
-                        { name: "420K", code: "AUG Assault Rifle-Operations-6KBE9PK099PEUU4LF7EHP" },
-                        { name: "275K", code: "AUG Assault Rifle-Operations-6KBEA1K099PEUU4LF7EHP" }
-                    ]
-                },
-                {
-                    title: "M4A1 LOADOUT",
-                    builds: [
-                        { name: "350K", code: "M4A1-Assault Rifle-Operations-EXAMPLECODE111" },
-                        { name: "400K", code: "M4A1-Assault Rifle-Operations-EXAMPLECODE222" }
-                    ]
-                }
-                // 📝 ඉදිරියට තව වෙපන්ස් එකතු කරද්දී මෙතනින් පල්ලෙහාට කමා එකක් (,) දාලා ලියන්න.
-            ];
+    <div class="social-links">
+        <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
+        <a href="https://discord.gg/24nARTqpwP" target="_blank" class="btn-social btn-discord">Join Our Discord Server</a>
+    </div>
 
-            // වෙබ්සයිට් එකට වෙපන්ස් ටික ඉබේම ඇතුළත් කරන කොටස
+    <footer>
+        <p>&copy; 2026 Developed for Delta Force Community.</p>
+    </footer>
+
+    <script>
+        // 🔴 ඔයා එවපු සම්පූර්ණ වෙපන් ලිස්ට් එක (මෙතනින් ඔයාට කෝඩ්ස් වෙනස් කරගන්න පුළුවන්)
+        const weaponDatabase = [
+            // ASSAULT RIFLES (ar)
+            { category: "ar", title: "AR-57", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "AKM", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "AKS-74", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "AK-12", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "M4A1", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "K416", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "CAR-15", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "M16A4", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "SG552", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "PTR-32", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "SCAR-H", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "AS VAL", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "AUG", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "QBZ95-1", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "ASH-12", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "MCX LT", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "K437", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "KC-17", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "MK47", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "CL-19", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "G3", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "M7", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+
+            // SMGs (smg)
+            { category: "smg", title: "Uzi", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "MP5", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "Bizon", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "Vityaz", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "Vector", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "SMG-45", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "P90", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "MP7", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "QCQ171", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "MK4", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "SR-3M", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+
+            // MARKSMAN RIFLES (dmr)
+            { category: "dmr", title: "Mini-14", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "M14", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "SR-25", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "SVD", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "SKS", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "VSS", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "SR 9", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "PSG-1", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "Lever Action", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+
+            // SNIPER RIFLES (sniper)
+            { category: "sniper", title: "M700", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "sniper", title: "R93", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "sniper", title: "SV-98", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "sniper", title: "AWM", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "sniper", title: "M82", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+
+            // SHOTGUNS (shotgun)
+            { category: "shotgun", title: "M870", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "shotgun", title: "M1014", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "shotgun", title: "S12K", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "shotgun", title: "FS-12", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "shotgun", title: "725 Double-Barrel", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+
+            // LIGHT MACHINE GUNS (lmg)
+            { category: "lmg", title: "M249", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "lmg", title: "PKM", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "lmg", title: "M250", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "lmg", title: "QJB-201", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+
+            // PISTOLS (pistol)
+            { category: "pistol", title: "G17", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "pistol", title: "G18", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "pistol", title: "QSZ-92G", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "pistol", title: "93R", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "pistol", title: "Desert Eagle", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "pistol", title: "Revolver", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] }
+        ];
+
+        // සයිට් එක ලෝඩ් වෙද්දී වෙපන්ස් ජෙනරේට් කරන ෆන්ක්ෂන් එක
+        function generateWeapons() {
             const container = document.getElementById('weapons-container');
-            loadoutData.forEach((weapon, index) => {
+            container.innerHTML = '';
+            
+            weaponDatabase.forEach((weapon, wIdx) => {
                 let buildsHtml = '';
-                weapon.builds.forEach(build => {
+                weapon.builds.forEach((build, bIdx) => {
+                    // බිල්ඩ් එකේ නම (උදා: NO CODE1) සහ කොපි වෙන්න ඕන කෝඩ් එක (දැනට SAMPLE-CODE...)
                     buildsHtml += `
                         <div class="loadout-item">
-                            <span class="loadout-name">${build.name}</span>
-                            <button class="copy-btn" onclick="copyCode('${build.code}', this)">Copy Code</button>
+                            <span class="loadout-name">${build}</span>
+                            <button class="copy-btn" onclick="copyCode('SAMPLE-CODE-${weapon.title}-${bIdx+1}', this)">Copy Code</button>
                         </div>`;
                 });
 
-                let weaponHtml = `
-                    <div class="weapon-group">
+                let html = `
+                    <div class="weapon-group" data-category="${weapon.category}">
                         <div class="weapon-header" onclick="toggleWeapon(this)">
                             <div class="weapon-title">${weapon.title}</div>
                             <div class="arrow">▼</div>
@@ -183,24 +293,26 @@
                             ${buildsHtml}
                         </div>
                     </div>`;
-                container.insertAdjacentHTML('beforeend', weaponHtml);
+                container.insertAdjacentHTML('beforeend', html);
             });
-        </script>
-        <!-- 🔴 වෙපන්ස් ලිස්ට් එක ඉවරයි 👆 -->
+        }
 
-        <!-- Social Links Section -->
-        <div class="social-links">
-            <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
-            <a href="https://discord.gg/24nARTqpwP" target="_blank" class="btn-social btn-discord">Join Our Discord Server</a>
-        </div>
+        // කැටගරි ෆිල්ටර් කරන ෆන්ක්ෂන් එක
+        function filterCategory(category, btn) {
+            // ඇක්ටිව් බටන් එකේ ස්ටයිල් මාරු කිරීම
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-    </div>
+            // වෙපන්ස් කාණ්ඩ පෙන්වීම/සැඟවීම
+            document.querySelectorAll('.weapon-group').forEach(group => {
+                if (category === 'all' || group.getAttribute('data-category') === category) {
+                    group.style.display = 'block';
+                } else {
+                    group.style.display = 'none';
+                }
+            });
+        }
 
-    <footer>
-        <p>&copy; 2026 Developed for Delta Force Community.</p>
-    </footer>
-
-    <script>
         function toggleWeapon(header) {
             header.classList.toggle('active');
             const list = header.nextElementSibling;
@@ -217,6 +329,9 @@
                 }, 2000);
             });
         }
+
+        // මුලින්ම සයිට් එක ලෝඩ් වෙද්දී රන් කරන්න
+        generateWeapons();
     </script>
 </body>
 </html>
