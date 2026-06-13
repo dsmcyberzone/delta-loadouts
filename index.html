@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delta Force Loadouts - PRiNcE么OPs</title>
+    <title>Delta Force Loadouts</title>
     <style>
         :root {
             /* ඔයා එවපු Image එකේ තියෙන Army Green Theme එක */
@@ -17,12 +17,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 50px; }
 
-        /* Header Styles (Image එකේ විදියටම) */
+        /* Header Styles */
         header {
             text-align: center;
             padding: 60px 20px 30px 20px;
         }
 
+        /* Delta Force Loadout Title එක */
         .main-title {
             font-size: 3.5rem;
             font-weight: 900;
@@ -32,22 +33,15 @@
             margin-bottom: 15px;
         }
 
+        /* ඔයාට කැමති Weapon Loadout... (පොඩියට දාපු එක) */
         .sub-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 15px;
+            font-size: 1.5rem; /* Title එකට වඩා පොඩි කරන ලදී */
+            font-weight: normal;
+            color: #e0e8e6;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.4;
-        }
-
-        .game-name { 
-            color: #ffffff; 
-            font-size: 2.5rem; 
-            font-weight: 800;
-            margin-top: 10px;
         }
 
         /* Container & Cards */
@@ -91,4 +85,125 @@
             gap: 15px;
         }
 
-        .loadout-item:last-child
+        .loadout-item:last-child { border-bottom: none; }
+        .loadout-name { color: #e0e0e0; font-size: 1.1rem; font-weight: 500; }
+
+        /* Copy Button */
+        .copy-btn {
+            background-color: #ffffff;
+            color: var(--bg-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            min-width: 100px;
+            transition: 0.2s;
+        }
+
+        .copy-btn:hover { background-color: #e0e0e0; }
+        .copy-btn.copied { background-color: #22c55e; color: #ffffff; }
+
+        /* Social Action Buttons */
+        .social-links { text-align: center; margin-top: 40px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        
+        .btn-social {
+            display: inline-block;
+            width: 100%;
+            max-width: 350px;
+            color: white;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-youtube { background-color: #FF0000; }
+        .btn-discord { background-color: #5865F2; }
+        .btn-social:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        footer { text-align: center; margin-top: 60px; color: #a4bdb8; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- ඔයා කියපු විදියට සකස් කරපු Title කොටස -->
+        <div class="main-title">DELTA FORCE LOADOUT</div>
+        <div class="sub-title">ඔයාට කැමති Weapon Loadout එකක් මෙතනින් ලේසියෙන් Copy කරගන්න</div>
+    </header>
+
+    <div class="container">
+
+        <!-- Weapon Section: AK-12 -->
+        <div class="weapon-group">
+            <div class="weapon-header" onclick="toggleWeapon(this)">
+                <div class="weapon-title">AK-12</div>
+                <div class="arrow">▼</div>
+            </div>
+            <div class="loadout-list">
+                <div class="loadout-item">
+                    <span class="loadout-name">AK-12 No Recoil Build</span>
+                    <button class="copy-btn" onclick="copyCode('AK12-CODE-1', this)">Copy Code</button>
+                </div>
+                <div class="loadout-item">
+                    <span class="loadout-name">AK-12 Close Range Build</span>
+                    <button class="copy-btn" onclick="copyCode('AK12-CODE-2', this)">Copy Code</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weapon Section: M4A1 -->
+        <div class="weapon-group">
+            <div class="weapon-header" onclick="toggleWeapon(this)">
+                <div class="weapon-title">M4A1</div>
+                <div class="arrow">▼</div>
+            </div>
+            <div class="loadout-list">
+                <div class="loadout-item">
+                    <span class="loadout-name">M4A1 Laser Build</span>
+                    <button class="copy-btn" onclick="copyCode('M4A1-CODE-1', this)">Copy Code</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Links Section -->
+        <div class="social-links">
+            <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
+            <a href="https://discord.gg/24nARTqpwP" target="_blank" class="btn-social btn-discord">Join Our Discord Server</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Developed for Delta Force Community.</p>
+    </footer>
+
+    <script>
+        function toggleWeapon(header) {
+            header.classList.toggle('active');
+            const list = header.nextElementSibling;
+            if (list.style.display === "block") {
+                list.style.display = "none";
+            } else {
+                list.style.display = "block";
+            }
+        }
+
+        function copyCode(code, button) {
+            navigator.clipboard.writeText(code).then(() => {
+                button.innerText = "Copied!";
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.innerText = "Copy Code";
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
