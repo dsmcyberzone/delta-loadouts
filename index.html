@@ -85,9 +85,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .weapon-group:hover {
-            border-color: var(--accent-color);
-        }
+        .weapon-group:hover { border-color: var(--accent-color); }
 
         .weapon-header {
             padding: 18px 20px;
@@ -176,7 +174,8 @@
     </div>
 
     <div class="container" id="weapons-container">
-        </div>
+        <!-- JavaScript මඟින් තුවක්කු ලිස්ට් එක මෙතනට generate වේ -->
+    </div>
 
     <div class="social-links">
         <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
@@ -188,98 +187,98 @@
     </footer>
 
     <script>
-        // 🔴 ඔයා එවපු සම්පූර්ණ වෙපන් ලිස්ට් එක (මෙතනින් ඔයාට කෝඩ්ස් වෙනස් කරගන්න පුළුවන්)
+        // 🔴 වෙපන් ඩේටාබේස් එක:
+        // 'name' එක වෙබ්සයිට් එකේ පේන නමයි. 'code' එක බටන් එක එබුවම COPY වෙන රහස් කෝඩ් එකයි.
         const weaponDatabase = [
             // ASSAULT RIFLES (ar)
-            { category: "ar", title: "AR-57", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "AKM", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "AKS-74", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "AK-12", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "M4A1", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "K416", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "CAR-15", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "M16A4", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "SG552", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "PTR-32", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "SCAR-H", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "AS VAL", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "AUG", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "QBZ95-1", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "ASH-12", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "MCX LT", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "K437", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "KC-17", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "MK47", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "CL-19", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "G3", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "ar", title: "M7", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "ar", title: "AR-57", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "AKM", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "AKS-74", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "AK-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "M4A1", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "K416", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "CAR-15", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "M16A4", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "SG552", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "PTR-32", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "SCAR-H", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "AS VAL", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "AUG", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "QBZ95-1", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "ASH-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "MCX LT", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "K437", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "KC-17", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "MK47", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "CL-19", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "G3", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "ar", title: "M7", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
 
             // SMGs (smg)
-            { category: "smg", title: "Uzi", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "MP5", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "Bizon", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "Vityaz", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "Vector", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "SMG-45", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "P90", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "MP7", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "QCQ171", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "MK4", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "smg", title: "SR-3M", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "smg", title: "Uzi", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "MP5", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "Bizon", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "Vityaz", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "Vector", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "SMG-45", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "P90", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "MP7", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "QCQ171", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "MK4", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "smg", title: "SR-3M", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
 
             // MARKSMAN RIFLES (dmr)
-            { category: "dmr", title: "Mini-14", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "M14", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "SR-25", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "SVD", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "SKS", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "VSS", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "SR 9", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "PSG-1", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "dmr", title: "Lever Action", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "dmr", title: "Mini-14", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "M14", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "SR-25", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "SVD", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "SKS", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "VSS", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "SR 9", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "PSG-1", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "dmr", title: "Lever Action", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
 
             // SNIPER RIFLES (sniper)
-            { category: "sniper", title: "M700", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "sniper", title: "R93", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "sniper", title: "SV-98", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "sniper", title: "AWM", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "sniper", title: "M82", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "sniper", title: "M700", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "sniper", title: "R93", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "sniper", title: "SV-98", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "sniper", title: "AWM", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "sniper", title: "M82", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
 
             // SHOTGUNS (shotgun)
-            { category: "shotgun", title: "M870", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "shotgun", title: "M1014", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "shotgun", title: "S12K", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "shotgun", title: "FS-12", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "shotgun", title: "725 Double-Barrel", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "shotgun", title: "M870", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "shotgun", title: "M1014", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "shotgun", title: "S12K", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "shotgun", title: "FS-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "shotgun", title: "725 Double-Barrel", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
 
             // LIGHT MACHINE GUNS (lmg)
-            { category: "lmg", title: "M249", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "lmg", title: "PKM", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "lmg", title: "M250", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "lmg", title: "QJB-201", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
+            { category: "lmg", title: "M249", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "lmg", title: "PKM", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "lmg", title: "M250", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "lmg", title: "QJB-201", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
 
             // PISTOLS (pistol)
-            { category: "pistol", title: "G17", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "pistol", title: "G18", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "pistol", title: "QSZ-92G", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "pistol", title: "93R", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "pistol", title: "Desert Eagle", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] },
-            { category: "pistol", title: "Revolver", builds: ["NO CODE1", "NO CODE2", "NO CODE3", "NO CODE4", "NO CODE5"] }
+            { category: "pistol", title: "G17", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "pistol", title: "G18", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "pistol", title: "QSZ-92G", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "pistol", title: "93R", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "pistol", title: "Desert Eagle", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+            { category: "pistol", title: "Revolver", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] }
         ];
 
-        // සයිට් එක ලෝඩ් වෙද්දී වෙපන්ස් ජෙනරේට් කරන ෆන්ක්ෂන් එක
         function generateWeapons() {
             const container = document.getElementById('weapons-container');
             container.innerHTML = '';
             
-            weaponDatabase.forEach((weapon, wIdx) => {
+            weaponDatabase.forEach((weapon) => {
                 let buildsHtml = '';
-                weapon.builds.forEach((build, bIdx) => {
-                    // බිල්ඩ් එකේ නම (උදා: NO CODE1) සහ කොපි වෙන්න ඕන කෝඩ් එක (දැනට SAMPLE-CODE...)
+                weapon.builds.forEach((build) => {
+                    // මෙතනදී කෙලින්ම build.code එක තමයි copyCode එක ඇතුළට පාස් වෙන්නේ
                     buildsHtml += `
                         <div class="loadout-item">
-                            <span class="loadout-name">${build}</span>
-                            <button class="copy-btn" onclick="copyCode('SAMPLE-CODE-${weapon.title}-${bIdx+1}', this)">Copy Code</button>
+                            <span class="loadout-name">${build.name}</span>
+                            <button class="copy-btn" onclick="copyCode('${build.code}', this)">Copy Code</button>
                         </div>`;
                 });
 
@@ -297,13 +296,10 @@
             });
         }
 
-        // කැටගරි ෆිල්ටර් කරන ෆන්ක්ෂන් එක
         function filterCategory(category, btn) {
-            // ඇක්ටිව් බටන් එකේ ස්ටයිල් මාරු කිරීම
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // වෙපන්ස් කාණ්ඩ පෙන්වීම/සැඟවීම
             document.querySelectorAll('.weapon-group').forEach(group => {
                 if (category === 'all' || group.getAttribute('data-category') === category) {
                     group.style.display = 'block';
@@ -330,7 +326,6 @@
             });
         }
 
-        // මුලින්ම සයිට් එක ලෝඩ් වෙද්දී රන් කරන්න
         generateWeapons();
     </script>
 </body>
