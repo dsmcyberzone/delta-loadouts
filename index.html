@@ -3,49 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delta Force Loadouts - DSM Cyber Zone</title>
+    <title>Delta Force Loadouts - PRiNcE么OPs</title>
     <style>
         :root {
-            --bg-color: #0b0f12;
-            --card-bg: #141a1f;
-            --text-color: #e2e8f0;
-            --accent-color: #ffd700;
-            --accent-hover: #ccac00;
-            --border-color: #242f38;
+            /* ඔයා එවපු Image එකේ තියෙන Army Green Theme එක */
+            --bg-color: #27443f; 
+            --card-bg: #1e3531;
+            --text-color: #ffffff;
+            --accent-color: #ffffff;
+            --border-color: #335952;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 50px; }
 
-        /* Header & Names */
+        /* Header Styles (Image එකේ විදියටම) */
         header {
             text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(180deg, #172026 0%, var(--bg-color) 100%);
-            border-bottom: 2px solid var(--accent-color);
+            padding: 60px 20px 30px 20px;
         }
 
-        .channel-name { color: var(--accent-color); font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; }
-        .game-name { color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px; }
-
-        header h1 {
-            font-size: 2.8rem; /* ලොකුවට දාන ලදී */
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 900;
             text-transform: uppercase;
+            letter-spacing: 3px;
             color: #ffffff;
-            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .sub-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 15px;
             max-width: 800px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+
+        .game-name { 
+            color: #ffffff; 
+            font-size: 2.5rem; 
+            font-weight: 800;
+            margin-top: 10px;
         }
 
         /* Container & Cards */
-        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
 
         .weapon-group {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 8px;
             margin-bottom: 15px;
             overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         /* Weapon Header (Clickable) */
@@ -56,141 +70,25 @@
             justify-content: space-between;
             align-items: center;
             transition: background 0.3s;
-            border-bottom: 1px solid transparent;
         }
 
-        .weapon-header:hover { background-color: #1c252d; }
-        .weapon-header.active { border-bottom-color: var(--border-color); }
+        .weapon-header:hover { background-color: #243f3a; }
+        .weapon-header.active { border-bottom: 1px solid var(--border-color); }
 
-        .weapon-title { font-size: 1.5rem; font-weight: bold; color: var(--accent-color); }
-        .arrow { transition: transform 0.3s; font-size: 1.2rem; }
+        .weapon-title { font-size: 1.6rem; font-weight: bold; color: #ffffff; }
+        .arrow { transition: transform 0.3s; font-size: 1.2rem; color: #ffffff; }
         .weapon-header.active .arrow { transform: rotate(180deg); }
 
-        /* Loadout List (Hidden by default) */
-        .loadout-list { display: none; padding: 20px; background-color: #0b0f12; }
+        /* Loadout List */
+        .loadout-list { display: none; padding: 15px 20px; background-color: #162724; }
 
         .loadout-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #1c252d;
-            gap: 10px;
+            padding: 14px 0;
+            border-bottom: 1px solid #1e3531;
+            gap: 15px;
         }
 
-        .loadout-name { color: #cbd5e1; font-weight: 500; }
-
-        /* Copy Button */
-        .copy-btn {
-            background-color: var(--accent-color);
-            color: #000;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.8rem;
-            min-width: 80px;
-        }
-
-        .copy-btn.copied { background-color: #22c55e; color: #fff; }
-
-        /* Social Buttons */
-        .social-links { text-align: center; margin-top: 30px; }
-        .btn-discord {
-            display: inline-block;
-            background-color: #5865F2;
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .btn-discord:hover { opacity: 0.8; }
-
-        footer { text-align: center; margin-top: 50px; color: #64748b; font-size: 0.8rem; }
-
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="channel-name">DSM CYBER ZONE</div>
-        <div class="game-name">PRiNcE么OPs</div>
-        <h1>ඔයාට කැමති Gun එකේ Loadout Code එක ලේසියෙන්ම Copy කරගන්න</h1>
-    </header>
-
-    <div class="container">
-
-        <!-- Weapon Section: AK-12 -->
-        <div class="weapon-group">
-            <div class="weapon-header" onclick="toggleWeapon(this)">
-                <div class="weapon-title">AK-12</div>
-                <div class="arrow">▼</div>
-            </div>
-            <div class="loadout-list">
-                <!-- AK-12 Loadout 1 -->
-                <div class="loadout-item">
-                    <span class="loadout-name">AK-12 No Recoil Build</span>
-                    <button class="copy-btn" onclick="copyCode('AK12-CODE-1', this)">Copy Code</button>
-                </div>
-                <!-- AK-12 Loadout 2 -->
-                <div class="loadout-item">
-                    <span class="loadout-name">AK-12 Close Range Build</span>
-                    <button class="copy-btn" onclick="copyCode('AK12-CODE-2', this)">Copy Code</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Weapon Section: M4A1 -->
-        <div class="weapon-group">
-            <div class="weapon-header" onclick="toggleWeapon(this)">
-                <div class="weapon-title">M4A1</div>
-                <div class="arrow">▼</div>
-            </div>
-            <div class="loadout-list">
-                <div class="loadout-item">
-                    <span class="loadout-name">M4A1 Laser Build</span>
-                    <button class="copy-btn" onclick="copyCode('M4A1-CODE-1', this)">Copy Code</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="social-links">
-            <a href="https://discord.gg/24nARTqpwP" target="_blank" class="btn-discord">Join Our Discord Server</a>
-        </div>
-
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Created by DSM Cyber Zone | Game: PRiNcE么OPs</p>
-    </footer>
-
-    <script>
-        // තුවක්කුවේ නම Click කරාම යටින් loadouts පෙන්වන function එක
-        function toggleWeapon(header) {
-            header.classList.toggle('active');
-            const list = header.nextElementSibling;
-            if (list.style.display === "block") {
-                list.style.display = "none";
-            } else {
-                list.style.display = "block";
-            }
-        }
-
-        // Copy කිරීමේ පහසුකම
-        function copyCode(code, button) {
-            navigator.clipboard.writeText(code).then(() => {
-                const originalText = button.innerText;
-                button.innerText = "Copied!";
-                button.classList.add('copied');
-                setTimeout(() => {
-                    button.innerText = originalText;
-                    button.classList.remove('copied');
-                }, 2000);
-            });
-        }
-    </script>
-</body>
-</html>
+        .loadout-item:last-child
