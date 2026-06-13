@@ -6,12 +6,13 @@
     <title>Delta Force Loadouts</title>
     <style>
         :root {
-            /* ඔයා එවපු Image එකේ තියෙන Army Green Theme එක */
-            --bg-color: #27443f; 
-            --card-bg: #1e3531;
+            /* නවීන Gaming කලර්ස් (Deep Blue, Neon Cyan සහ Gold) */
+            --bg-color: #0d131a; 
+            --card-bg: #141d26;
             --text-color: #ffffff;
-            --accent-color: #ffffff;
-            --border-color: #335952;
+            --accent-color: #00f0ff; /* Neon Cyan */
+            --gold-color: #ffd700;   /* Gold */
+            --border-color: #1e2b38;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
@@ -21,9 +22,11 @@
         header {
             text-align: center;
             padding: 60px 20px 30px 20px;
+            background: linear-gradient(180deg, #172330 0%, var(--bg-color) 100%);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Delta Force Loadout Title එක */
+        /* Delta Force Loadout Title */
         .main-title {
             font-size: 3.5rem;
             font-weight: 900;
@@ -31,13 +34,14 @@
             letter-spacing: 3px;
             color: #ffffff;
             margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
 
-        /* ඔයාට කැමති Weapon Loadout... (පොඩියට දාපු එක) */
+        /* Sub Title */
         .sub-title {
-            font-size: 1.5rem; /* Title එකට වඩා පොඩි කරන ලදී */
+            font-size: 1.4rem;
             font-weight: normal;
-            color: #e0e8e6;
+            color: #94a3b8;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -45,7 +49,7 @@
         }
 
         /* Container & Cards */
-        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
 
         .weapon-group {
             background-color: var(--card-bg);
@@ -53,7 +57,13 @@
             border-radius: 8px;
             margin-bottom: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .weapon-group:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
         }
 
         /* Weapon Header (Clickable) */
@@ -66,43 +76,43 @@
             transition: background 0.3s;
         }
 
-        .weapon-header:hover { background-color: #243f3a; }
-        .weapon-header.active { border-bottom: 1px solid var(--border-color); }
+        .weapon-header:hover { background-color: #1a2632; }
+        .weapon-header.active { border-bottom: 1px solid var(--border-color); background-color: #1a2632; }
 
-        .weapon-title { font-size: 1.6rem; font-weight: bold; color: #ffffff; }
-        .arrow { transition: transform 0.3s; font-size: 1.2rem; color: #ffffff; }
+        .weapon-title { font-size: 1.6rem; font-weight: bold; color: var(--gold-color); letter-spacing: 1px; }
+        .arrow { transition: transform 0.3s; font-size: 1.2rem; color: var(--accent-color); }
         .weapon-header.active .arrow { transform: rotate(180deg); }
 
         /* Loadout List */
-        .loadout-list { display: none; padding: 15px 20px; background-color: #162724; }
+        .loadout-list { display: none; padding: 10px 20px; background-color: #0b1016; }
 
         .loadout-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid #1e3531;
+            padding: 15px 0;
+            border-bottom: 1px solid #141d26;
             gap: 15px;
         }
 
         .loadout-item:last-child { border-bottom: none; }
-        .loadout-name { color: #e0e0e0; font-size: 1.1rem; font-weight: 500; }
+        .loadout-name { color: #cbd5e1; font-size: 1.1rem; font-weight: 500; }
 
         /* Copy Button */
         .copy-btn {
-            background-color: #ffffff;
-            color: var(--bg-color);
+            background-color: var(--accent-color);
+            color: #0d131a;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
             font-size: 0.9rem;
-            min-width: 100px;
+            min-width: 110px;
             transition: 0.2s;
         }
 
-        .copy-btn:hover { background-color: #e0e0e0; }
+        .copy-btn:hover { background-color: #33f3ff; transform: scale(1.03); }
         .copy-btn.copied { background-color: #22c55e; color: #ffffff; }
 
         /* Social Action Buttons */
@@ -119,27 +129,25 @@
             font-weight: bold;
             font-size: 1.1rem;
             transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
         .btn-youtube { background-color: #FF0000; }
         .btn-discord { background-color: #5865F2; }
         .btn-social:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        footer { text-align: center; margin-top: 60px; color: #a4bdb8; font-size: 0.9rem; }
+        footer { text-align: center; margin-top: 60px; color: #475569; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <!-- ඔයා කියපු විදියට සකස් කරපු Title කොටස -->
         <div class="main-title">DELTA FORCE LOADOUT</div>
         <div class="sub-title">ඔයාට කැමති Weapon Loadout එකක් මෙතනින් ලේසියෙන් Copy කරගන්න</div>
     </header>
 
     <div class="container">
 
-        <!-- Weapon Section: AK-12 -->
         <div class="weapon-group">
             <div class="weapon-header" onclick="toggleWeapon(this)">
                 <div class="weapon-title">AK-12</div>
@@ -157,7 +165,6 @@
             </div>
         </div>
 
-        <!-- Weapon Section: M4A1 -->
         <div class="weapon-group">
             <div class="weapon-header" onclick="toggleWeapon(this)">
                 <div class="weapon-title">M4A1</div>
@@ -171,7 +178,6 @@
             </div>
         </div>
 
-        <!-- Social Links Section -->
         <div class="social-links">
             <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
             <a href="https://discord.gg/24nARTqpwP" target="_blank" class="btn-social btn-discord">Join Our Discord Server</a>
