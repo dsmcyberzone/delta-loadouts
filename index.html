@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delta Force Loadouts</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --bg-color: #0d131a; 
@@ -14,7 +19,14 @@
             --border-color: #1e2b38;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        /* 🎯 මුළු සයිට් එකේම අකුරු Rajdhani Gaming Font එකට මාරු කිරීම */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Rajdhani', sans-serif; 
+        }
+        
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 50px; }
 
         header {
@@ -23,41 +35,35 @@
             background: linear-gradient(180deg, #172330 0%, var(--bg-color) 100%);
         }
 
-        /* 🎯 Logo එක සඳහා වන ස්ටයිල්ස් */
-        .logo-container {
+        /* 🎯 ඔයා දාපු අලුත් Title Image එක සඳහා වන Styles */
+        .title-image-container {
             margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
         }
-        
-        .game-logo {
+
+        .title-image {
             width: 100%;
-            max-width: 180px; /* ලෝගෝ එකේ ප්‍රමාණය මෙතනින් වෙනස් කරන්න පුළුවන් */
+            max-width: 500px; /* PC එකේදී ලස්සනට පේන්න ප්‍රමාණය */
             height: auto;
-            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4)); /* Neon Glow Effect එක */
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.25)); /* Cyber Glow Effect එක */
             transition: transform 0.3s ease;
         }
 
-        .game-logo:hover {
-            transform: scale(1.05); /* මවුස් එක උඩට ගෙනිච්චම ලෝගෝ එක පොඩ්ඩක් ලොකු වෙනවා */
-        }
-
-        .main-title {
-            font-size: 3.2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #ffffff;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        .title-image:hover {
+            transform: scale(1.02); /* මවුස් එක උඩට ගෙනිච්චම ලාවට ලොකු වෙනවා */
         }
 
         .sub-title {
-            font-size: 1.3rem;
-            font-weight: normal;
+            font-size: 1.4rem; /* Font එක වෙනස් කරපු නිසා සයිස් එක පොඩ්ඩක් වැඩි කළා */
+            font-weight: 500;
             color: #94a3b8;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.4;
+            letter-spacing: 0.5px;
         }
 
         /* Category Filter Menu */
@@ -75,11 +81,12 @@
             background-color: #1a2632;
             color: #cbd5e1;
             border: 1px solid var(--border-color);
-            padding: 10px 18px;
+            padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
             transition: 0.2s;
         }
 
@@ -115,7 +122,7 @@
         .weapon-header:hover { background-color: #1a2632; }
         .weapon-header.active { border-bottom: 1px solid var(--border-color); background-color: #1a2632; }
 
-        .weapon-title { font-size: 1.5rem; font-weight: bold; color: var(--gold-color); letter-spacing: 1px; }
+        .weapon-title { font-size: 1.6rem; font-weight: 700; color: var(--gold-color); letter-spacing: 1px; }
         .arrow { transition: transform 0.3s; font-size: 1.2rem; color: var(--accent-color); }
         .weapon-header.active .arrow { transform: rotate(180deg); }
 
@@ -131,18 +138,19 @@
         }
 
         .loadout-item:last-child { border-bottom: none; }
-        .loadout-name { color: #cbd5e1; font-size: 1.05rem; font-weight: bold; }
+        .loadout-name { color: #cbd5e1; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
 
         .copy-btn {
             background-color: var(--accent-color);
             color: #0d131a;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 4px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 0.85rem;
-            min-width: 105px;
+            font-weight: 700;
+            font-size: 1rem;
+            min-width: 110px;
+            letter-spacing: 0.5px;
             transition: 0.2s;
         }
 
@@ -159,8 +167,9 @@
             text-decoration: none;
             padding: 14px 25px;
             border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
             transition: 0.3s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
@@ -169,17 +178,23 @@
         .btn-discord { background-color: #5865F2; }
         .btn-social:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        footer { text-align: center; margin-top: 60px; color: #475569; font-size: 0.9rem; }
+        footer { text-align: center; margin-top: 60px; color: #475569; font-size: 1rem; letter-spacing: 0.5px; }
+
+        /* Mobile Devices වලදී Title Image එක ලස්සනට පේන්න */
+        @media (max-width: 600px) {
+            .title-image {
+                max-width: 95%; 
+            }
+            .sub-title { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Delta Force Logo" class="game-logo">
+        <div class="title-image-container">
+            <img src="logo1.png" alt="Delta Force Loadout" class="title-image">
         </div>
-        
-        <div class="main-title">DELTA FORCE LOADOUT</div>
         <div class="sub-title">ඔයාට කැමති Weapon Loadout එකක් මෙතනින් ලේසියෙන් Copy කරගන්න</div>
     </header>
 
@@ -207,6 +222,7 @@
     </footer>
 
     <script>
+        // වෙපන් ඩේටාබේස් එක
         const weaponDatabase = [
             // ASSAULT RIFLES (ar)
             { category: "ar", title: "AR-57", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
