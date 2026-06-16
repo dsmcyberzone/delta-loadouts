@@ -71,8 +71,13 @@ nav{
     width: 100%; max-width: 110px; height: auto;
     filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.4));
 }
+
+/* logo1.png සයිස් එක මෙතනින් වැඩි කර ඇත */
 .title-image {
-    width: 100%; max-width: 450px; height: auto; object-fit: contain;
+    width: 100%; 
+    max-width: 650px; /* කලින් තිබුණේ 450px; */
+    height: auto; 
+    object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
     transition: transform 0.3s ease;
 }
@@ -256,7 +261,6 @@ footer{
 
 <canvas id="smk"></canvas>
 
-<!-- ══ NAV ══ -->
 <nav>
   <a href="#" class="nlogo">DELTA<span>FORCE</span>&nbsp;·&nbsp;DSM</a>
   <ul class="nlinks">
@@ -266,7 +270,6 @@ footer{
   <div class="nstatus">TACTICAL HUB LIVE</div>
 </nav>
 
-<!-- ══ HERO ══ -->
 <section id="hero">
   <div class="h-corners"></div>
   <div class="h-cl"></div>
@@ -301,12 +304,10 @@ footer{
   </div>
 </section>
 
-<!-- ══ TICKER ══ -->
 <div class="ticker-wrap">
   <div class="ticker-track" id="tkr"></div>
 </div>
 
-<!-- ══ LOADOUT CONTENT SECTION ══ -->
 <div id="loadout" class="sec-wrap">
 <div class="sec">
   <div class="sec-hdr">
@@ -317,12 +318,10 @@ footer{
     <div class="sec-badge" id="weapon-count-badge">42 WEAPONS</div>
   </div>
 
-  <!-- Weapon Search Bar -->
   <div class="search-container">
     <input type="text" id="weaponSearch" class="search-input" placeholder="🔍 Search Weapon Name... (e.g., M4A1, AKM)" onkeyup="searchWeapon()">
   </div>
 
-  <!-- Category Selection Menu -->
   <div class="category-menu">
         <button class="tab-btn active" id="btn-all" onclick="filterCategory('all', this)">ALL WEAPONS</button>
         <button class="tab-btn" onclick="filterCategory('ar', this)">🔫 ASSAULT RIFLES</button>
@@ -334,12 +333,10 @@ footer{
         <button class="tab-btn" onclick="filterCategory('pistol', this)">🔫 PISTOLS</button>
   </div>
 
-  <!-- Weapon Grid Area -->
   <div class="wgrid" id="wgrid"></div>
 </div>
 </div>
 
-<!-- ══ SOCIAL COMMUNITY SECTION ══ -->
 <section class="social-section" id="community">
     <h3 class="social-title">// JOIN THE DSM CYBER ZONE COMMUNITY</h3>
     <div class="social-links">
@@ -348,7 +345,6 @@ footer{
     </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <div class="flogo">DELTA<span>FORCE</span> · HQ</div>
   <div class="fdis">&copy; DSM Cyber Zone. Unofficial fan site developed for Delta Force Community. All weapon names and assets belong to their respective manufacturers.</div>
