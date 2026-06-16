@@ -1,221 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delta Force Loadouts</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DELTA FORCE HQ — DSM Cyber Zone</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#06090C;
+  --bg2:#0B1018;
+  --cyan:#00CFFF;
+  --cyan-d:rgba(0,207,255,0.12);
+  --orange:#FF6B35;
+  --orange-d:rgba(255,107,53,0.12);
+  --green:#39D353;
+  --gold:#ffd700;
+  --glass:rgba(255,255,255,0.04);
+  --gborder:rgba(255,255,255,0.08);
+  --txt:#DDE6ED;
+  --txt2:#7B8FA0;
+  --txt3:#374B5A;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
 
-    <style>
-        :root {
-            --bg-color: #0d131a; 
-            --card-bg: #141d26;
-            --text-color: #ffffff;
-            --accent-color: #00f0ff; 
-            --gold-color: #ffd700;   
-            --border-color: #1e2b38;
-        }
+/* ── SMOKE CANVAS ── */
+#smk{position:fixed;inset:0;z-index:0;pointer-events:none;}
+body>*:not(#smk){position:relative;z-index:1;}
 
-        /* 🎯 මුළු සයිට් එකේම අකුරු Rajdhani Gaming Font එකට මාරু කිරීම */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Rajdhani', sans-serif; 
-        }
-        
-        body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 50px; }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:62px;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,9,12,0.72);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--gborder);
+}
+.nlogo{
+  font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;
+  letter-spacing:0.18em;color:var(--cyan);text-decoration:none;
+}
+.nlogo span{color:var(--txt3);}
+.nlinks{display:flex;gap:28px;list-style:none;}
+.nlinks a{
+  font-family:'Rajdhani',sans-serif;font-size:0.82rem;font-weight:600;
+  letter-spacing:0.13em;text-transform:uppercase;color:var(--txt2);text-decoration:none;
+  transition:color .2s;
+}
+.nlinks a:hover{color:var(--cyan);}
+.nstatus{
+  display:flex;align-items:center;gap:7px;
+  font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--green);
+}
+.nstatus::before{
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--green);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
 
-        header {
-            text-align: center;
-            padding: 30px 20px 25px 20px;
-            background: linear-gradient(180deg, #172330 0%, var(--bg-color) 100%);
-        }
+/* ── HERO ── */
+#hero{
+  min-height:90vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:100px 40px 60px;position:relative;overflow:hidden;
+}
+.logo-container { margin-bottom: 15px; }
+.game-logo {
+    width: 100%; max-width: 110px; height: auto;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.4));
+}
+.title-image {
+    width: 100%; max-width: 450px; height: auto; object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
+    transition: transform 0.3s ease;
+}
+.title-image:hover { transform: scale(1.03); }
 
-        /* 🎯 1 වෙනි ලෝගෝ එක (Small Logo) සඳහා Styles */
-        .logo-container {
-            margin-bottom: 10px;
-        }
-        
-        .game-logo {
-            width: 100%;
-            max-width: 120px; /* ලෝගෝ එක ඕනෑවට වඩා ලොකු නොවී තියාගන්න */
-            height: auto;
-            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
-        }
+.h-corners{position:absolute;inset:20px;pointer-events:none;}
+.h-corners::before,.h-corners::after,
+.h-cl::before,.h-cl::after{
+  content:'';position:absolute;width:22px;height:22px;
+  border-color:rgba(0,207,255,0.3);border-style:solid;
+}
+.h-corners::before{top:0;left:0;border-width:2px 0 0 2px;}
+.h-corners::after{top:0;right:0;border-width:2px 2px 0 0;}
+.h-cl::before{bottom:0;left:0;border-width:0 0 2px 2px;}
+.h-cl::after{bottom:0;right:0;border-width:0 2px 2px 0;}
 
-        /* 🎯 2 වෙනි ලෝගෝ එක (Main Title Image) සඳහා Styles */
-        .title-image-container {
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: center;
-        }
+.h-eyebrow{
+  font-family:'Share Tech Mono',monospace;font-size:0.68rem;
+  letter-spacing:0.32em;text-transform:uppercase;color:var(--cyan);
+  margin-top:15px;margin-bottom:10px;opacity:0.8;
+}
+.h-desc{
+  max-width:600px;font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight: 500;
+  color:var(--txt2);letter-spacing:0.03em;margin-bottom:30px;
+}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.btn-p{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 26px;background:var(--cyan);color:#030608;
+  font-family:'Rajdhani',sans-serif;font-size:0.88rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  transition:all .18s;
+}
+.btn-p:hover{background:#3DDBFF;transform:translateY(-1px);box-shadow: 0 0 15px rgba(0,207,255,0.4);}
 
-        .title-image {
-            width: 100%;
-            max-width: 500px; /* PC එකේදී ලස්සනට පේන්න ප්‍රමාණය */
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.25)); /* Cyber Glow Effect එක */
-            transition: transform 0.3s ease;
-        }
+.h-stats{
+  display:flex;gap:36px;margin-top:45px;padding-top:30px;
+  border-top:1px solid var(--gborder);
+}
+.h-stat-v{ font-family:'Orbitron',monospace;font-size:1.9rem;font-weight:700;color:var(--cyan); }
+.h-stat-l{
+  font-family:'Rajdhani',sans-serif;font-size:0.65rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;color:var(--txt3);margin-top:3px;
+}
 
-        .title-image:hover {
-            transform: scale(1.02);
-        }
+/* ── TICKER ── */
+.ticker-wrap{
+  background:rgba(0,207,255,0.06);border-top:1px solid rgba(0,207,255,0.15);
+  border-bottom:1px solid rgba(0,207,255,0.15);padding:9px 0;overflow:hidden;white-space:nowrap;
+}
+.ticker-track{display:inline-block;animation:tick 35s linear infinite;}
+.ticker-item{
+  display:inline-block;font-family:'Share Tech Mono',monospace;font-size:0.68rem;
+  letter-spacing:0.14em;color:rgba(0,207,255,0.65);padding:0 32px;
+}
+.ticker-item::before{content:'◆ ';}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-        .sub-title {
-            font-size: 1.4rem; 
-            font-weight: 500;
-            color: #94a3b8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.4;
-            letter-spacing: 0.5px;
-        }
+/* ── SECTION ── */
+.sec{padding:60px 48px;max-width:1300px;margin:0 auto;}
+.sec-wrap{background:rgba(0,0,0,0.35);}
+.sec-hdr{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:30px;padding-bottom:14px;border-bottom:1px solid var(--gborder);
+}
+.sec-lbl{
+  font-family:'Share Tech Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px;
+}
+.sec-ttl{font-family:'Orbitron',monospace;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:700;color:var(--txt);}
+.sec-badge{
+  font-family:'Share Tech Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.18em;color:var(--gold);padding:4px 10px;border:1px solid rgba(255,215,0,0.3);text-transform:uppercase;
+}
 
-        /* Category Filter Menu */
-        .category-menu {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
+/* ── SEARCH BAR ── */
+.search-container {
+    max-width: 600px; margin: 0 auto 25px auto; padding: 0 10px; position: relative;
+}
+.search-input {
+    width: 100%; padding: 12px 20px; background: rgba(11, 16, 24, 0.85);
+    border: 1px solid var(--gborder); color: #fff; font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; border-radius: 4px;
+    outline: none; transition: all 0.25s ease;
+}
+.search-input:focus {
+    border-color: var(--cyan); box-shadow: 0 0 15px rgba(0, 207, 255, 0.25);
+    background: #0b1018;
+}
 
-        .tab-btn {
-            background-color: #1a2632;
-            color: #cbd5e1;
-            border: 1px solid var(--border-color);
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: 1px;
-            transition: 0.2s;
-        }
+/* ── CATEGORY FILTER MENU ── */
+.category-menu {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px; max-width: 1100px; margin: 10px auto 30px auto; padding: 0 10px;
+}
+.tab-btn {
+    background-color: #0b1118; color: #cbd5e1;
+    border: 1px solid var(--gborder); padding: 8px 16px;
+    cursor: pointer; font-family: 'Rajdhani', sans-serif; font-weight: 700;
+    font-size: 0.9rem; letter-spacing: 1px; transition: 0.2s;
+}
+.tab-btn:hover, .tab-btn.active {
+    background-color: var(--cyan); color: #030608;
+    border-color: var(--cyan); box-shadow: 0 0 12px rgba(0, 207, 255, 0.35);
+}
 
-        .tab-btn:hover, .tab-btn.active {
-            background-color: var(--accent-color);
-            color: #0d131a;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-        }
+/* ── WEAPONS LOADOUT GRID ── */
+.wgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:20px; }
+.wcard{
+  background:rgba(8,14,20,0.85); backdrop-filter:blur(16px);
+  border:1px solid var(--gborder); border-radius:4px; overflow:hidden;
+  transition:all .22s; display: block;
+}
+.wcard:hover{ transform:translateY(-3px); border-color: var(--cyan); box-shadow:0 10px 30px rgba(0,207,255,0.15); }
+.whead{ padding:16px 18px 13px; border-bottom:1px solid var(--gborder); position:relative; overflow:hidden; }
+.wtype{ font-family:'Share Tech Mono',monospace; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:3px; color: var(--cyan); }
+.wname{ font-family:'Orbitron',monospace; font-size:1.4rem; font-weight:700; letter-spacing:0.04em; color:var(--gold); }
+.wbody{ padding:16px 18px; }
+.alist{ display:flex; flex-direction:column; gap:8px; }
+.arow{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.03); gap: 10px;
+}
+.arow:last-child { border-bottom: none; }
+.aslot{ font-family:'Rajdhani',sans-serif; font-size:1.05rem; font-weight:600; color:var(--txt2); }
+.codebox {
+  background: rgba(0, 207, 255, 0.04); border: 1px dashed rgba(0, 207, 255, 0.25);
+  padding: 6px 10px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 4px;
+}
+.cval{ font-family:'Share Tech Mono',monospace; font-size:0.78rem; letter-spacing:0.05em; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 150px; }
+.cpybtn{
+  background:var(--cyan); padding:6px 14px; cursor:pointer; font-family:'Rajdhani',sans-serif;
+  font-size:0.8rem; font-weight: 700; letter-spacing:0.05em; transition:all .15s; border: none; color: #030608; min-width: 75px; text-align: center;
+}
+.cpybtn:hover{ background: #3DDBFF; }
+.cpybtn.copied { background: var(--green); color: white; }
 
-        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; }
+/* ── SOCIAL LINKS ── */
+.social-section { text-align: center; padding: 50px 20px; background: rgba(8,14,20,0.4); border-top: 1px solid var(--gborder); }
+.social-title { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 20px; letter-spacing: 1px; }
+.social-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.btn-social {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 260px; color: white; text-decoration: none; padding: 12px 25px;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem;
+    letter-spacing: 0.5px; transition: 0.3s; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.btn-youtube { background-color: #FF0000; }
+.btn-youtube:hover { background-color: #cc0000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,0,0,0.3); }
+.btn-discord { background-color: #5865F2; }
+.btn-discord:hover { background-color: #404eed; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(88,101,242,0.3); }
 
-        .weapon-group {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--gborder); padding:28px 48px;
+  display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.6);
+}
+.flogo{ font-family:'Orbitron',monospace; font-size:0.88rem; font-weight:700; color:var(--cyan); }
+.flogo span{ color:var(--txt3); }
+.fdis{ font-family:'Inter',sans-serif; font-size:0.68rem; color:var(--txt3); max-width: 60%; text-align: right; }
 
-        .weapon-group:hover { border-color: var(--accent-color); }
+/* ── ANIMATIONS ── */
+@keyframes fiu{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.fi{opacity:0;animation:fiu .65s ease-out both;}
+.d1{animation-delay:.1s;}.d2{animation-delay:.2s;}.d3{animation-delay:.3s;}
 
-        .weapon-header {
-            padding: 18px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .weapon-header:hover { background-color: #1a2632; }
-        .weapon-header.active { border-bottom: 1px solid var(--border-color); background-color: #1a2632; }
-
-        .weapon-title { font-size: 1.6rem; font-weight: 700; color: var(--gold-color); letter-spacing: 1px; }
-        .arrow { transition: transform 0.3s; font-size: 1.2rem; color: var(--accent-color); }
-        .weapon-header.active .arrow { transform: rotate(180deg); }
-
-        .loadout-list { display: none; padding: 5px 20px; background-color: #0b1016; }
-
-        .loadout-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid #141d26;
-            gap: 15px;
-        }
-
-        .loadout-item:last-child { border-bottom: none; }
-        .loadout-name { color: #cbd5e1; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
-
-        .copy-btn {
-            background-color: var(--accent-color);
-            color: #0d131a;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1rem;
-            min-width: 110px;
-            letter-spacing: 0.5px;
-            transition: 0.2s;
-        }
-
-        .copy-btn:hover { background-color: #33f3ff; }
-        .copy-btn.copied { background-color: #22c55e; color: #ffffff; }
-
-        .social-links { text-align: center; margin-top: 40px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
-        
-        .btn-social {
-            display: inline-block;
-            width: 100%;
-            max-width: 350px;
-            color: white;
-            text-decoration: none;
-            padding: 14px 25px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-            transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-
-        .btn-youtube { background-color: #FF0000; }
-        .btn-discord { background-color: #5865F2; }
-        .btn-social:hover { opacity: 0.9; transform: translateY(-2px); }
-
-        footer { text-align: center; margin-top: 60px; color: #475569; font-size: 1rem; letter-spacing: 0.5px; }
-
-        /* Mobile Devices වලදී පින්තූර ලස්සනට සයිස් වෙන්න */
-        @media (max-width: 600px) {
-            .title-image { max-width: 95%; }
-            .game-logo { max-width: 90px; }
-            .sub-title { font-size: 1.2rem; }
-        }
-    </style>
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nlinks{display:none;}
+  .sec{padding:40px 20px;}
+  .wgrid{grid-template-columns:1fr;}
+  .h-stats{gap:20px;}
+  footer{flex-direction:column; gap:14px; text-align:center; padding:24px 20px;}
+  .fdis { max-width: 100%; text-align: center; }
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Delta Force Mini Logo" class="game-logo">
-        </div>
+<canvas id="smk"></canvas>
 
-        <div class="title-image-container">
-            <img src="logo1.png" alt="Delta Force Title" class="title-image">
-        </div>
-        
-        <div class="sub-title">ඔයාට කැමති Weapon Loadout එකක් මෙතනින් ලේසියෙන් Copy කරගන්න</div>
-    </header>
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="nlogo">DELTA<span>FORCE</span>&nbsp;·&nbsp;DSM</a>
+  <ul class="nlinks">
+    <li><a href="#loadout">Weapon Loadouts</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+  <div class="nstatus">TACTICAL HUB LIVE</div>
+</nav>
 
-    <div class="category-menu">
-        <button class="tab-btn active" onclick="filterCategory('all', this)">All Weapons</button>
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="h-corners"></div>
+  <div class="h-cl"></div>
+  
+  <div class="logo-container fi">
+      <img src="logo.png" alt="Delta Force Mini Logo" class="game-logo">
+  </div>
+  <div class="fi d1">
+      <img src="logo1.png" alt="Delta Force Title" class="title-image">
+  </div>
+  
+  <div class="h-eyebrow fi d2">CLASSIFIED TACTICAL DATABASE</div>
+  <p class="h-desc fi d2">ඔයාට කැමති Weapon Loadout එකක් මෙතනින් ලේසියෙන් Copy කරගන්න.</p>
+  
+  <div class="ctas fi d3">
+    <a href="#loadout" class="btn-p">▶&nbsp;Explore Weapon Loadouts</a>
+  </div>
+  
+  <div class="h-stats fi d3">
+    <div>
+      <div class="h-stat-v" id="cnt1">0</div>
+      <div class="h-stat-l">Total Weapons</div>
+    </div>
+    <div>
+      <div class="h-stat-v" id="cnt2">0</div>
+      <div class="h-stat-l">Builds Available</div>
+    </div>
+    <div>
+      <div class="h-stat-v" id="cnt3">0</div>
+      <div class="h-stat-l">Active Codes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tkr"></div>
+</div>
+
+<!-- ══ LOADOUT CONTENT SECTION ══ -->
+<div id="loadout" class="sec-wrap">
+<div class="sec">
+  <div class="sec-hdr">
+    <div>
+      <div class="sec-lbl">// Weapon Intelligence System</div>
+      <h2 class="sec-ttl">GUN BUILD LOADOUTS</h2>
+    </div>
+    <div class="sec-badge" id="weapon-count-badge">42 WEAPONS</div>
+  </div>
+
+  <!-- Weapon Search Bar -->
+  <div class="search-container">
+    <input type="text" id="weaponSearch" class="search-input" placeholder="🔍 Search Weapon Name... (e.g., M4A1, AKM)" onkeyup="searchWeapon()">
+  </div>
+
+  <!-- Category Selection Menu -->
+  <div class="category-menu">
+        <button class="tab-btn active" id="btn-all" onclick="filterCategory('all', this)">ALL WEAPONS</button>
         <button class="tab-btn" onclick="filterCategory('ar', this)">🔫 ASSAULT RIFLES</button>
         <button class="tab-btn" onclick="filterCategory('smg', this)">⚡ SMGs</button>
         <button class="tab-btn" onclick="filterCategory('dmr', this)">🎯 MARKSMAN</button>
@@ -223,158 +332,303 @@
         <button class="tab-btn" onclick="filterCategory('shotgun', this)">💥 SHOTGUNS</button>
         <button class="tab-btn" onclick="filterCategory('lmg', this)">🔥 LMGs</button>
         <button class="tab-btn" onclick="filterCategory('pistol', this)">🔫 PISTOLS</button>
-    </div>
+  </div>
 
-    <div class="container" id="weapons-container">
-        </div>
+  <!-- Weapon Grid Area -->
+  <div class="wgrid" id="wgrid"></div>
+</div>
+</div>
 
+<!-- ══ SOCIAL COMMUNITY SECTION ══ -->
+<section class="social-section" id="community">
+    <h3 class="social-title">// JOIN THE DSM CYBER ZONE COMMUNITY</h3>
     <div class="social-links">
         <a href="https://youtube.com/@dsm_cyberzone?si=iO3iadmzRlE9z6T2" target="_blank" class="btn-social btn-youtube">Subscribe on YouTube</a>
         <a href="https://discord.gg/24nARTqpwP" target="_blank" class="btn-social btn-discord">Join Our Discord Server</a>
     </div>
+</section>
 
-    <footer>
-        <p>&copy; DSM Cyber Zone Developed for Delta Force Community.</p>
-    </footer>
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="flogo">DELTA<span>FORCE</span> · HQ</div>
+  <div class="fdis">&copy; DSM Cyber Zone. Unofficial fan site developed for Delta Force Community. All weapon names and assets belong to their respective manufacturers.</div>
+</footer>
 
-    <script>
-        const weaponDatabase = [
-            // ASSAULT RIFLES (ar)
-            { category: "ar", title: "AR-57", builds: [{name: "Close-Mid Range | 460K", code: "6KBIONO099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "AKM", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "AKS-74", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "AK-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "M4A1", builds: [{name: "Close-Mid-Long(Stable) Range | 3× Scope | 480K (By Apple)", code: "6KBLE2K099PEUU4LF7EHP"}, {name: "Close-Mid(50M) Range | RedDot | 300K", code: "6KBU0RG099PEUU4LF7EHP"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "K416", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "CAR-15", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "M16A4", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "SG552", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "PTR-32", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "SCAR-H", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "AS VAL", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "AUG", builds: [{name: "Close-Mid Range | RedDot | 300K", code: "6KBEA1K099PEUU4LF7EHP"}, {name: "Close-Mid-Long Range | Cheater Scope | 475K", code: "6KBE9PK099PEUU4LF7EHP"}, {name: "Close-Mid Range | 3× Scope | 425K", code: "6KBE9HC099PEUU4LF7EHP"}, {name: "Close-Mid Range | 3× Scope Barrel | 260K", code: "6KBLANC099PEUU4LF7EHP"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "QBZ95-1", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "ASH-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "MCX LT", builds: [{name: "Close-Mid Range | RedDot | 275K", code: "6K9J6O0099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "K437", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "KC-17", builds: [{name: "Close-MId Range | RedDot | 480K", code: "6KBU6Q0099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "MK47", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "CL-19", builds: [{name: "Close-Mid-Long(Auto Stable) | Cheater Scope | 520K", code: "6KBMTNG099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "G3", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "ar", title: "M7", builds: [{name: "Close-Mid-Long(single) | 2/4× Scope | 1M", code: "6KBKQ3S099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+<script>
+/* ══════════════ COMPLETE WEAPON DATABASE ══════════════ */
+const weaponDatabase = [
+    // ASSAULT RIFLES (ar)
+    { category: "ar", type: "ASSAULT RIFLE", title: "AR-57", builds: [{name: "Close-Mid Range | 460K", code: "6KBIONO099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "AKM", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "AKS-74", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "AK-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "M4A1", builds: [{name: "Close-Mid-Long(Stable) | 480K", code: "6KBLE2K099PEUU4LF7EHP"}, {name: "Close-Mid(50M) | RedDot | 300K", code: "6KBU0RG099PEUU4LF7EHP"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "K416", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "CAR-15", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "M16A4", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "SG552", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "PTR-32", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "SCAR-H", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "AS VAL", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "AUG", builds: [{name: "Close-Mid | RedDot | 300K", code: "6KBEA1K099PEUU4LF7EHP"}, {name: "Close-Mid-Long | Cheater Scope | 475K", code: "6KBE9PK099PEUU4LF7EHP"}, {name: "Close-Mid | 3× Scope | 425K", code: "6KBE9HC099PEUU4LF7EHP"}, {name: "Close-Mid | 3× Barrel | 260K", code: "6KBLANC099PEUU4LF7EHP"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "QBZ95-1", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "ASH-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "MCX LT", builds: [{name: "Close-Mid Range | RedDot | 275K", code: "6K9J6O0099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "K437", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "KC-17", builds: [{name: "Close-MId Range | RedDot | 480K", code: "6KBU6Q0099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "MK47", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "CL-19", builds: [{name: "Close-Mid-Long(Stable) | 520K", code: "6KBMTNG099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "G3", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    { category: "ar", type: "ASSAULT RIFLE", title: "M7", builds: [{name: "Close-Mid-Long(single) | 1M", code: "6KBKQ3S099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
 
-            // SMGs (smg)
-            { category: "smg", title: "Uzi", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "MP5", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "Bizon", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "Vityaz", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "Vector", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "SMG-45", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "P90", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "MP7", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "QCQ171", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "MK4", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "smg", title: "SR-3M", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    // SMGs (smg)
+    { category: "smg", type: "SUBMACHINE GUN", title: "Uzi", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "MP5", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "Bizon", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "Vityaz", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "Vector", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "SMG-45", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "P90", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "MP7", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "QCQ171", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "MK4", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "smg", type: "SUBMACHINE GUN", title: "SR-3M", builds: [{name: "NO CODE1", code: "CODE 1"}] },
 
-            // MARKSMAN RIFLES (dmr)
-            { category: "dmr", title: "Mini-14", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "M14", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "SR-25", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "SVD", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "SKS", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "VSS", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "SR 9", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "PSG-1", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "dmr", title: "Lever Action", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    // MARKSMAN RIFLES (dmr)
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "Mini-14", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "M14", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "SR-25", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "SVD", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "SKS", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "VSS", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "SR 9", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "PSG-1", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "dmr", type: "MARKSMAN RIFLE", title: "Lever Action", builds: [{name: "NO CODE1", code: "CODE 1"}] },
 
-            // SNIPER RIFLES (sniper)
-            { category: "sniper", title: "M700", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "sniper", title: "R93", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "sniper", title: "SV-98", builds: [{name: "150M(Stable) | 3/7X Ballastic Scope | 100K(Best Budget)", code: "6KBU9K0099PEUU4LF7EHP"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "sniper", title: "AWM", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "sniper", title: "M82", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    // SNIPER RIFLES (sniper)
+    { category: "sniper", type: "SNIPER RIFLE", title: "M700", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "sniper", type: "SNIPER RIFLE", title: "R93", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "sniper", type: "SNIPER RIFLE", title: "SV-98", builds: [{name: "150M(Stable) | 100K(Budget)", code: "6KBU9K0099PEUU4LF7EHP"}] },
+    { category: "sniper", type: "SNIPER RIFLE", title: "AWM", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "sniper", type: "SNIPER RIFLE", title: "M82", builds: [{name: "NO CODE1", code: "CODE 1"}] },
 
-            // SHOTGUNS (shotgun)
-            { category: "shotgun", title: "M870", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "shotgun", title: "M1014", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "shotgun", title: "S12K", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "shotgun", title: "FS-12", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "shotgun", title: "725 Double-Barrel", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    // SHOTGUNS (shotgun)
+    { category: "shotgun", type: "SHOTGUN", title: "M870", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "shotgun", type: "SHOTGUN", title: "M1014", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "shotgun", type: "SHOTGUN", title: "S12K", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "shotgun", type: "SHOTGUN", title: "FS-12", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "shotgun", type: "SHOTGUN", title: "725 Double-Barrel", builds: [{name: "NO CODE1", code: "CODE 1"}] },
 
-            // LIGHT MACHINE GUNS (lmg)
-            { category: "lmg", title: "M249", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "lmg", title: "PKM", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "lmg", title: "M250", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "lmg", title: "QJB-201", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
+    // LIGHT MACHINE GUNS (lmg)
+    { category: "lmg", type: "LIGHT MACHINE GUN", title: "M249", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "lmg", type: "LIGHT MACHINE GUN", title: "PKM", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "lmg", type: "LIGHT MACHINE GUN", title: "M250", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "lmg", type: "LIGHT MACHINE GUN", title: "QJB-201", builds: [{name: "NO CODE1", code: "CODE 1"}] },
 
-            // PISTOLS (pistol)
-            { category: "pistol", title: "G17", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "pistol", title: "G18", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "pistol", title: "QSZ-92G", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "pistol", title: "93R", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "pistol", title: "Desert Eagle", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] },
-            { category: "pistol", title: "Revolver", builds: [{name: "NO CODE1", code: "CODE 1"}, {name: "NO CODE2", code: "CODE 2"}, {name: "NO CODE3", code: "CODE 3"}, {name: "NO CODE4", code: "CODE 4"}, {name: "NO CODE5", code: "CODE 5"}] }
-        ];
+    // PISTOLS (pistol)
+    { category: "pistol", type: "PISTOL", title: "G17", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "pistol", type: "PISTOL", title: "G18", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "pistol", type: "PISTOL", title: "QSZ-92G", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "pistol", type: "PISTOL", title: "93R", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "pistol", type: "PISTOL", title: "Desert Eagle", builds: [{name: "NO CODE1", code: "CODE 1"}] },
+    { category: "pistol", type: "PISTOL", title: "Revolver", builds: [{name: "NO CODE1", code: "CODE 1"}] }
+];
 
-        function generateWeapons() {
-            const container = document.getElementById('weapons-container');
-            container.innerHTML = '';
-            
-            weaponDatabase.forEach((weapon) => {
-                let buildsHtml = '';
-                weapon.builds.forEach((build) => {
-                    buildsHtml += `
-                        <div class="loadout-item">
-                            <span class="loadout-name">${build.name}</span>
-                            <button class="copy-btn" onclick="copyCode('${build.code}', this)">Copy Code</button>
-                        </div>`;
-                });
+/* Dynamic Layout Generation */
+const grid = document.getElementById('wgrid');
 
-                let html = `
-                    <div class="weapon-group" data-category="${weapon.category}">
-                        <div class="weapon-header" onclick="toggleWeapon(this)">
-                            <div class="weapon-title">${weapon.title}</div>
-                            <div class="arrow">▼</div>
-                        </div>
-                        <div class="loadout-list">
-                            ${buildsHtml}
-                        </div>
-                    </div>`;
-                container.insertAdjacentHTML('beforeend', html);
-            });
+function generateWeapons() {
+  grid.innerHTML = '';
+  let totalBuildsCount = 0;
+
+  weaponDatabase.forEach(w => {
+    const card = document.createElement('div');
+    card.className = 'wcard';
+    card.setAttribute('data-category', w.category);
+    
+    let attachmentRows = '';
+    w.builds.forEach(build => {
+      totalBuildsCount++;
+      attachmentRows += `
+        <div class="arow">
+          <span class="aslot">${build.name}</span>
+          <div class="codebox">
+            <span class="cval">${build.code}</span>
+            <button class="cpybtn" onclick="cpy(this,'${build.code}')">COPY</button>
+          </div>
+        </div>`;
+    });
+
+    card.innerHTML = `
+      <div class="whead">
+        <div class="wtype">${w.type}</div>
+        <div class="wname">${w.title}</div>
+      </div>
+      <div class="wbody">
+        <div class="alist">${attachmentRows}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  
+  // Set Initial Badges Content
+  document.getElementById('weapon-count-badge').textContent = `${weaponDatabase.length} WEAPONS REGISTERED`;
+  return totalBuildsCount;
+}
+
+const totalBuilds = generateWeapons();
+
+/* Category Filter Control */
+function filterCategory(category, btn) {
+    // Clear search input when switching categories
+    document.getElementById('weaponSearch').value = '';
+    
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.wcard').forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
         }
+    });
+}
 
-        function filterCategory(category, btn) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+/* ── WEAPON SEARCH FUNCTION ── */
+function searchWeapon() {
+    const input = document.getElementById('weaponSearch').value.toUpperCase();
+    const cards = document.querySelectorAll('.wcard');
+    
+    // Automatically reset the category menu to 'ALL WEAPONS' when typing
+    const allBtn = document.getElementById('btn-all');
+    if(input !== "") {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        if(allBtn) allBtn.classList.add('active');
+    }
 
-            document.querySelectorAll('.weapon-group').forEach(group => {
-                if (category === 'all' || group.getAttribute('data-category') === category) {
-                    group.style.display = 'block';
-                } else {
-                    group.style.display = 'none';
-                }
-            });
+    cards.forEach(card => {
+        const weaponName = card.querySelector('.wname').textContent.toUpperCase();
+        if (weaponName.includes(input)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
         }
+    });
+}
 
-        function toggleWeapon(header) {
-            header.classList.toggle('active');
-            const list = header.nextElementSibling;
-            list.style.display = list.style.display === "block" ? "none" : "block";
-        }
+/* Copy Action Trigger */
+function cpy(btn, code) {
+  navigator.clipboard.writeText(code).then(() => {
+    const prev = btn.textContent;
+    btn.textContent = 'COPIED ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+        btn.textContent = prev;
+        btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // Fallback System for older devices
+    const ta = document.createElement('textarea');
+    ta.value = code; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'COPIED ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+        btn.textContent = 'COPY';
+        btn.classList.remove('copied');
+    }, 2000);
+  });
+}
 
-        function copyCode(code, button) {
-            navigator.clipboard.writeText(code).then(() => {
-                button.innerText = "Copied!";
-                button.classList.add('copied');
-                setTimeout(() => {
-                    button.innerText = "Copy Code";
-                    button.classList.remove('copied');
-                }, 2000);
-            });
-        }
+/* ══ LIVE TICKER STRINGS ══ */
+const tickerItems = [
+  'DSM Cyber Zone Loadout Hub', 'Delta Force Global Launch Meta builds',
+  'M4A1 Laser Stable Build Active', 'Join Discord for custom request builds',
+  'SV-98 Budget Sniper Build Updated', 'All codes verified working on Season 3'
+];
+const tkr = document.getElementById('tkr');
+const allTracks = [...tickerItems, ...tickerItems];
+tkr.innerHTML = allTracks.map(t => `<span class="ticker-item">${t}</span>`).join('');
 
-        generateWeapons();
-    </script>
+/* ══ COUNTER ANIMATOR ══ */
+function animCount(el, target, dur = 1200) {
+  let start = null;
+  function step(ts) {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    el.textContent = Math.round(p * target);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const counters = [
+  { el: document.getElementById('cnt1'), val: weaponDatabase.length },
+  { el: document.getElementById('cnt2'), val: totalBuilds },
+  { el: document.getElementById('cnt3'), val: totalBuilds }
+];
+
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      counters.forEach(c => animCount(c.el, c.val));
+      cio.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+cio.observe(document.querySelector('.h-stats'));
+
+/* ══════════════ AMBIENT SMOKE BACKGROUND ENGINE ══════════════ */
+const cv = document.getElementById('smk');
+const cx = cv.getContext('2d');
+function rsz() { cv.width = window.innerWidth; cv.height = window.innerHeight; }
+rsz();
+window.addEventListener('resize', rsz);
+
+class Particle {
+  constructor() { this.reset(true); }
+  reset(init = false) {
+    this.x = Math.random() * cv.width;
+    this.y = init ? Math.random() * cv.height : cv.height + Math.random() * 60 + 40;
+    this.r = Math.random() * 70 + 25;
+    this.maxOp = Math.random() * 0.12 + 0.02;
+    this.op = init ? this.maxOp * Math.random() : 0;
+    this.vy = -(Math.random() * 0.4 + 0.1);
+    this.vx = (Math.random() - .5) * 0.2;
+    this.gr = Math.random() * 0.15 + 0.04;
+    this.fd = this.maxOp / (600 + Math.random() * 800);
+    const h = Math.floor(Math.random() * 40 + 180);
+    const s = Math.floor(Math.random() * 15 + 5);
+    const l = Math.floor(Math.random() * 10 + 2);
+    this.hsl = `${h},${s}%,${l}%`;
+  }
+  update() {
+    this.y += this.vy; this.x += this.vx; this.r += this.gr;
+    if (this.y > cv.height - 200) { this.op = Math.min(this.op + 0.002, this.maxOp); } else { this.op -= this.fd; }
+    if (this.op <= 0 || this.y + this.r < 0) this.reset();
+  }
+  draw() {
+    const g = cx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+    g.addColorStop(0, `hsla(${this.hsl},${this.op})`);
+    g.addColorStop(0.4, `hsla(${this.hsl},${this.op * 0.4})`);
+    g.addColorStop(1, `hsla(${this.hsl},0)`);
+    cx.beginPath(); cx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    cx.fillStyle = g; cx.fill();
+  }
+}
+
+const ps = Array.from({ length: 45 }, () => new Particle());
+let raf;
+function draw() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  ps.forEach(p => { p.update(); p.draw(); });
+  raf = requestAnimationFrame(draw);
+}
+draw();
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) cancelAnimationFrame(raf); else draw();
+});
+</script>
 </body>
 </html>
