@@ -42,9 +42,89 @@
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
 
+/* ── HOLOGRAM GRID & DRONE SCAN LINES ── */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background:
+        linear-gradient(rgba(0,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,.04) 1px, transparent 1px);
+    background-size:70px 70px;
+    animation:gridMove 18s linear infinite;
+}
+@keyframes gridMove{
+    from{ transform:translateY(0); }
+    to{ transform:translateY(70px); }
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+    background:repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,.018) 4px
+    );
+    animation:scanline .12s linear infinite;
+}
+@keyframes scanline{
+    0%{ transform:translateY(0); }
+    100%{ transform:translateY(4px); }
+}
+
+/* ── NEW VISUAL EFFECTS STYLING ── */
+#radar{
+    position:fixed;
+    top:-40%;
+    left:-40%;
+    width:180%;
+    height:180%;
+    pointer-events:none;
+    z-index:2;
+    background:conic-gradient(transparent 0deg,rgba(0,255,255,.22) 18deg,transparent 35deg);
+    animation:radarRotate 8s linear infinite;
+    mix-blend-mode:screen;
+}
+@keyframes radarRotate{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+#flash{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:white;
+    opacity:0;
+    z-index:4;
+    animation:flash 13s infinite;
+}
+@keyframes flash{
+    0%,95%,100%{ opacity:0; }
+    96%{ opacity:.10; }
+    96.3%{ opacity:0; }
+    96.8%{ opacity:.25; }
+    97%{ opacity:0; }
+}
+
+.vignette{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:3;
+    background:radial-gradient(circle,transparent 45%,rgba(0,0,0,.65));
+}
+
 /* ── SMOKE CANVAS ── */
 #smk{position:fixed;inset:0;z-index:0;pointer-events:none;}
-body>*:not(#smk){position:relative;z-index:1;}
+body>*:not(#smk){position:relative;z-index:5;}
 
 /* ── NAV ── */
 nav{
@@ -415,6 +495,9 @@ footer{
 <body>
 
 <canvas id="smk"></canvas>
+<div id="radar"></div>
+<div id="flash"></div>
+<div class="vignette"></div>
 
 <nav>
   <a href="#" class="nlogo">DELTA<span>FORCE</span>&nbsp;·&nbsp;DSM</a>
@@ -720,7 +803,6 @@ const weaponDatabase = [
         mode: "operations", category: "ar", type: "ASSAULT RIFLE", title: "AR-57", 
         builds: [
             { name: "Close-Mid Range | 460K", code: "6KBIONO099PEUU4LF7EHP", stats: { control: 81, handling: 74, stability: 85, accuracy: 82, firerate: 80 } },
-            { name: "Close-Mid Range| RedDot | 400K(Budget)", code: "6KEUJMO099PEUU4LF7EHP", stats: { control: 75, handling: 79, stability: 78, accuracy: 80, firerate: 80 } },
             { name: "Close-Mid Range| RedDot | 400K(Budget)", code: "6KEUJMO099PEUU4LF7EHP", stats: { control: 75, handling: 79, stability: 78, accuracy: 80, firerate: 80 } }
         ] 
     },
@@ -1498,9 +1580,6 @@ function generateWeapons() {
   const currentModeWeapons = weaponDatabase.filter(w => w.mode === currentMode).length;
   document.getElementById('weapon-count-badge').textContent = `${currentModeWeapons} WEAPONS REGISTERED`;
   
-  // Initial triggers animation loop execution run logic
-  setTimeout(() => { animateStatsBars(); }, 50);
-  
   return totalBuildsCount;
 }
 
@@ -1647,56 +1726,55 @@ const cio = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 cio.observe(document.querySelector('.h-stats'));
 
-/* Fullscreen Ambient Particle Flow Renderer */
-const cv = document.getElementById('smk');
-const cx = cv.getContext('2d');
-function rsz() { cv.width = window.innerWidth; cv.height = window.innerHeight; }
-rsz();
-window.addEventListener('resize', rsz);
+/* ── FLYING PARTICLES RENDERING ENGINE (INTEGRATED) ── */
+const canvas = document.getElementById("smk");
+const ctx = canvas.getContext("2d");
+let w, h;
 
-class Particle {
-  constructor() { this.reset(true); }
-  reset(init = false) {
-    this.x = Math.random() * cv.width;
-    this.y = init ? Math.random() * cv.height : cv.height + Math.random() * 60 + 40;
-    this.r = Math.random() * 70 + 25;
-    this.maxOp = Math.random() * 0.12 + 0.02;
-    this.op = init ? this.maxOp * Math.random() : 0;
-    this.vy = -(Math.random() * 0.4 + 0.1);
-    this.vx = (Math.random() - .5) * 0.2;
-    this.gr = Math.random() * 0.15 + 0.04;
-    this.fd = this.maxOp / (600 + Math.random() * 800);
-    const h = Math.floor(Math.random() * 40 + 180);
-    const s = Math.floor(Math.random() * 15 + 5);
-    const l = Math.floor(Math.random() * 10 + 2);
-    this.hsl = `${h},${s}%,${l}%`;
-  }
-  update() {
-    this.y += this.vy; this.x += this.vx; this.r += this.gr;
-    if (this.y > cv.height - 200) { this.op = Math.min(this.op + 0.002, this.maxOp); } else { this.op -= this.fd; }
-    if (this.op <= 0 || this.y + this.r < 0) this.reset();
-  }
-  draw() {
-    const g = cx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
-    g.addColorStop(0, `hsla(${this.hsl},${this.op})`);
-    g.addColorStop(0.4, `hsla(${this.hsl},${this.op * 0.4})`);
-    g.addColorStop(1, `hsla(${this.hsl},0)`);
-    cx.beginPath(); cx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    cx.fillStyle = g; cx.fill();
-  }
+function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+}
+window.onresize = resize;
+resize();
+
+const particles = [];
+for (let i = 0; i < 120; i++) {
+    particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 1,
+        vx: (Math.random() - .5) * .3,
+        vy: -Math.random() * .6 - .2
+    });
 }
 
-const ps = Array.from({ length: 45 }, () => new Particle());
 let raf;
 function draw() {
-  cx.clearRect(0, 0, cv.width, cv.height);
-  ps.forEach(p => { p.update(); p.draw(); });
-  raf = requestAnimationFrame(draw);
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.y < 0) {
+            p.y = h;
+            p.x = Math.random() * w;
+        }
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(0,255,255,.5)";
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    raf = requestAnimationFrame(draw);
 }
+
 draw();
+
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden) cancelAnimationFrame(raf); else draw();
+    if (document.hidden) cancelAnimationFrame(raf); else draw();
 });
+
+// Stats bars initial animation fallback trigger
+setTimeout(() => { animateStatsBars(); }, 250);
 </script>
 </body>
 </html>
